@@ -1,25 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import { searchMovie, IMDBForm, IMDBDataView } from "./IMDB";
+
+function IMDBInfo() {
+  const [info, setInfo] = useState("");
+
+  useEffect(() => {
+    searchMovie({ query: "蜘蛛侠" })
+      .then((res) => {
+        setInfo(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  return (
+    <div className="imdb-info">
+      {JSON.stringify(info)}
+      <IMDBDataView />
+    </div>
+  );
+}
+
+function IMDB() {
+  return (
+    <div className="imdb">
+      <IMDBForm />
+      <hr />
+      <IMDBInfo />
+    </div>
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <IMDB />
+    </>
   );
 }
 
