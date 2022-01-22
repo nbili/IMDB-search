@@ -27,7 +27,7 @@ function searchMovie({ query, language = "zh", api_key = KEY }: SearchQuery) {
 }
 
 function IMDBForm() {
-  return <form className="imdb-form">form</form>;
+  return <form className="imdb-form"></form>;
 }
 
 function IMDBDataView() {
